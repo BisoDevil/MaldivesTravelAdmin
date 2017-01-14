@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_addDriver"
+            android:icon="@drawable/add_driver"
+            android:title="Add Driver" />
+        <item
+            android:icon="@drawable/assign"
+            android:title="Assign Trip"
+            android:id="@+id/nav_AssignTrip" />
+        <item
+            android:id="@+id/nav_myNotificatios"
+            android:icon="@drawable/notificationbell"
+            android:title="Send Notification" />
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/feedback"
+            android:title="Feedbacks" />
+        <item android:title="Today Trips"
+            android:id="@+id/nav_todayTrips"
+            android:icon="@drawable/todaytrips" />
+    </group>
+
+</menu>
