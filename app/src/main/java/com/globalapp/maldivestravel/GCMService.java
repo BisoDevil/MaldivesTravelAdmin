@@ -14,8 +14,13 @@ import org.json.JSONObject;
  * Created by Smiley on 7/6/2016.
  */
 public class GCMService extends KinveyGCMService {
+    private static long time;
     @Override
     public void onMessage(String message) {
+        if (time + 2000 > System.currentTimeMillis()) {
+            return;
+        }
+        time = System.currentTimeMillis();
         try {
             JSONObject details = new JSONObject(message);
             String msg = details.getString("message");
