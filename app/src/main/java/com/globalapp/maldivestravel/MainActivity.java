@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     final int MY_PERMISSIONS_REQUEST_Location = 123;
 
     @Override
@@ -231,14 +232,14 @@ public class MainActivity extends AppCompatActivity
                 return info;
             }
         });
-mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(),16));
-        marker.showInfoWindow();
-        return true;
-    }
-});
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 16));
+                marker.showInfoWindow();
+                return true;
+            }
+        });
     }
 
     @Override
@@ -257,10 +258,11 @@ mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             , null, null, null, null, null, null, null, null, null, null, null, null
             , null, null, null, null, null, null, null};
 
-     CountDownTimer timer=null;
+    CountDownTimer timer = null;
+
     private void Tracking() {
 
-         timer = new CountDownTimer(10000, 1000) {
+        timer = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -324,6 +326,7 @@ mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 
             @Override
             public void onFinish() {
+
                 Loginuser();
                 timer.start();
 
@@ -372,17 +375,20 @@ mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 
     public void Loginuser() {
         Client mKinveyClient = new Client.Builder(getApplicationContext()).build();
-        mKinveyClient.user().login("Admin", "Admin", new KinveyClientCallback<User>() {
-            @Override
-            public void onSuccess(User user) {
+        if (!mKinveyClient.user().isUserLoggedIn()) {
+            mKinveyClient.user().login("Admin", "Admin", new KinveyClientCallback<User>() {
+                @Override
+                public void onSuccess(User user) {
 
-            }
+                }
 
-            @Override
-            public void onFailure(Throwable throwable) {
+                @Override
+                public void onFailure(Throwable throwable) {
 
-            }
-        });
+                }
+            });
+        }
+
 
     }
 }
