@@ -198,6 +198,7 @@ public class MainActivity extends AppCompatActivity
             LatLng Center = new LatLng(GPS.getLatitude(), GPS.getLongitude());
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Center, 15));
         } catch (Exception ex) {
+            ex.printStackTrace();
 
         }
 
@@ -270,10 +271,6 @@ mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     public void onSuccess(GenericJson[] genericJsons) {
                         try {
 
-
-                            //   Toast.makeText(MainActivity.this, String.valueOf(genericJsons.length), Toast.LENGTH_SHORT).show();
-                            //
-//                            mMap.clear();
                             for (int n = 0; n < genericJsons.length; n++) {
 
                                 LatLng latlong = new LatLng(Double.valueOf(genericJsons[n].get("lat").toString()),
@@ -327,6 +324,7 @@ mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 
             @Override
             public void onFinish() {
+                Loginuser();
                 timer.start();
 
             }
